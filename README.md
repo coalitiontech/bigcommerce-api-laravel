@@ -1,1 +1,1 @@
-"# BigCommerce REST API client" 
+# Big Commerce REST API client
