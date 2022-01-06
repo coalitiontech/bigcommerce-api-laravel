@@ -1,0 +1,31 @@
+{
+    "name": "coalitiontech/bigcommerce-api-laravel",
+    "description": "Big Commerce REST API client for Laravel by Coalition Technologies.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Coalition Technologies",
+            "email": "hardik.modha@coalitiontechnologies.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.3|^8.0",
+        "ext-json": "*",
+        "spatie/laravel-package-tools": "^1.9.2",
+        "illuminate/http": "^8.73",
+        "illuminate/support": "^8.73"
+    },
+    "autoload": {
+        "psr-4": {
+            "CoalitionTech\\BigCommerceAPI\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CoalitionTech\\BigCommerceAPI\\\\BigCommerceServiceProvider"
+            ]
+        }
+    }
+}
