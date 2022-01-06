@@ -2,6 +2,7 @@
 
 namespace CoalitionTech\BigCommerceAPI;
 
+use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Config;
 
 abstract class BigCommerceAPI
@@ -52,6 +53,11 @@ abstract class BigCommerceAPI
         return $this->api_version = Config::get('bigcommerce.api_version');
     }
 
+    private function client(): PendingRequest
+    {
+        return $this->bigCommerceClient->client();
+    }
+
     public function generateUrl($end_point, $id = null): string
     {
         return $this->getBaseUrl() . $this->bigCommerceClient->getStoreHash() . '/' . $this->getApiVersion() . '/' . $end_point . ($id ? ('/' . $id) : '');
@@ -65,7 +71,7 @@ abstract class BigCommerceAPI
 
     public function all($query_data = null)
     {
-        $response = $this->bigCommerceClient->get($this->generateUrl($this->endPoint), $query_data);
+        $response = $this->client()->get($this->generateUrl($this->endPoint), $query_data);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -74,7 +80,7 @@ abstract class BigCommerceAPI
 
     public function get($id, $query_data = null)
     {
-        $response = $this->bigCommerceClient->get($this->generateUrl($this->endPoint, $id), $query_data);
+        $response = $this->client()->get($this->generateUrl($this->endPoint, $id), $query_data);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -83,7 +89,7 @@ abstract class BigCommerceAPI
 
     public function create($form_data = [])
     {
-        $response = $this->bigCommerceClient->post($this->generateUrl($this->endPoint), $form_data);
+        $response = $this->client()->post($this->generateUrl($this->endPoint), $form_data);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -92,7 +98,7 @@ abstract class BigCommerceAPI
 
     public function update($id, $form_data = [])
     {
-        $response = $this->bigCommerceClient->put($this->generateUrl($this->endPoint, $id), $form_data);
+        $response = $this->client()->put($this->generateUrl($this->endPoint, $id), $form_data);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -101,7 +107,7 @@ abstract class BigCommerceAPI
 
     public function updateMultiple($form_data = [])
     {
-        $response = $this->bigCommerceClient->put($this->generateUrl($this->endPoint), $form_data);
+        $response = $this->client()->put($this->generateUrl($this->endPoint), $form_data);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -110,7 +116,7 @@ abstract class BigCommerceAPI
 
     public function delete($id)
     {
-        $response = $this->bigCommerceClient->delete($this->generateUrl($this->endPoint, $id));
+        $response = $this->client()->delete($this->generateUrl($this->endPoint, $id));
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
@@ -126,7 +132,7 @@ abstract class BigCommerceAPI
             if ($first)
                 $first = false;
         }
-        $response = $this->bigCommerceClient->delete($this->generateUrl($this->endPoint) . $ids_string);
+        $response = $this->client()->delete($this->generateUrl($this->endPoint) . $ids_string);
         if ($response->status() == 200)
             return json_decode($response->body(), true);
 
