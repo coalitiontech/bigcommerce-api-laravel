@@ -53,7 +53,7 @@ abstract class BigCommerceAPI
         return $this->api_version = Config::get('bigcommerce.api_version');
     }
 
-    private function client(): PendingRequest
+    public function client(): PendingRequest
     {
         return $this->bigCommerceClient->client();
     }
