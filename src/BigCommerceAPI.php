@@ -19,8 +19,23 @@ abstract class BigCommerceAPI
 
     public function __construct()
     {
-        $class_name = Config::get('bigcommerce-api-laravel.big_client', BigCommerceClient::class);
-        $this->bigCommerceClient = new $class_name();
+        $class_name = Config::get('bigcommerce-api-laravel.big_client');
+        if ($class_name) {
+            $this->bigCommerceClient = new $class_name();
+        } else {
+            $this->bigCommerceClient = new class extends BigCommerceClient {
+
+                public function getStoreHash()
+                {
+                    return Config::get('bigcommerce-api-laravel.api_config.store_hash');
+                }
+
+                public function getAccessToken()
+                {
+                    return Config::get('bigcommerce-api-laravel.api_config.access_token');
+                }
+            };
+        }
     }
 
     private function getBaseUrl()
