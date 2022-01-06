@@ -139,7 +139,7 @@ abstract class BigCommerceAPI
         return false;
     }
 
-    public static function makeQuery(): self
+    public static function makeQuery()
     {
         return (new static);
     }
