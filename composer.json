@@ -24,7 +24,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "CoalitionTech\\BigCommerceAPI\\\\BigCommerceServiceProvider"
+                "CoalitionTech\\BigCommerceAPI\\BigCommerceServiceProvider"
             ]
         }
     }
