@@ -19,6 +19,6 @@ class BigCommerce extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return 'bigcommerce-client';
+        return 'ct-bigcommerce-client';
     }
 }

@@ -22,8 +22,8 @@ class BigCommerceServiceProvider extends PackageServiceProvider
     {
         parent::register();
 
-        $this->app->bind('bigcommerce-client', function () {
-            new BigCommerce();
+        $this->app->bind('ct-bigcommerce-client', function () {
+            return new BigCommerce();
         });
 
         return $this;
