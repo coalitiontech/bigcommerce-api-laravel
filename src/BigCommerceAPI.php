@@ -139,8 +139,8 @@ abstract class BigCommerceAPI
         return false;
     }
 
-    public static function __callStatic($method, $parameters)
+    public static function makeQuery(): self
     {
-        return (new static)->$method(...$parameters);
+        return (new static);
     }
 }
