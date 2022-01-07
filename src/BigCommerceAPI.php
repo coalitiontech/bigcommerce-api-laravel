@@ -43,14 +43,14 @@ abstract class BigCommerceAPI
     {
         if ($this->base_url)
             return $this->base_url;
-        return $this->base_url = Config::get('bigcommerce.base_url');
+        return $this->base_url = Config::get('bigcommerce-api-laravel.base_url');
     }
 
     private function getApiVersion()
     {
         if ($this->api_version)
             return $this->api_version;
-        return $this->api_version = Config::get('bigcommerce.api_version');
+        return $this->api_version = Config::get('bigcommerce-api-laravel.api_version');
     }
 
     public function client(): PendingRequest
