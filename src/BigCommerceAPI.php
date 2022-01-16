@@ -78,6 +78,15 @@ abstract class BigCommerceAPI
         return false;
     }
 
+    public function paginate($page = 1, $per_page = 15, $query_data = [])
+    {
+        $response = $this->client()->get($this->generateUrl($this->endPoint), array_merge($query_data, ['page' => $page, 'limit' => $per_page]));
+        if ($response->status() == 200)
+            return json_decode($response->body(), true);
+
+        return false;
+    }
+
     public function get($id, $query_data = null)
     {
         $response = $this->client()->get($this->generateUrl($this->endPoint, $id), $query_data);
