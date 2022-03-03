@@ -53,6 +53,15 @@ abstract class BigCommerceAPI
         return $this->api_version = Config::get('bigcommerce-api-laravel.api_version');
     }
 
+    public function switchApiVersion($version)
+    {
+        if ($version != 'v2' && $version != 'v3')
+            return $this;
+
+        $this->api_version = $version;
+        return $this;
+    }
+
     public function client(): PendingRequest
     {
         return $this->bigCommerceClient->client();
