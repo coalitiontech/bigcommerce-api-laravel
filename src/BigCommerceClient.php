@@ -14,7 +14,9 @@ abstract class BigCommerceClient
     public function client(): PendingRequest
     {
         return Http::withHeaders([
-            'x-auth-token' => $this->getAccessToken()
+            'x-auth-token' => $this->getAccessToken(),
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
         ]);
     }
 }
